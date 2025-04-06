@@ -2,12 +2,23 @@ package pe.edu.tecsup.tienda.entities;
 
 public class Categoria {
 
+
+
 	private Integer id;
 	
 	private String nombre;
 	
 	private Integer orden;
 
+	public Categoria(Integer id, String nombre, Integer orden) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.orden = orden;
+	}
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}

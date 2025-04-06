@@ -2,11 +2,15 @@ package pe.edu.tecsup.tienda.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import pe.edu.tecsup.tienda.entities.Categoria;
 import pe.edu.tecsup.tienda.repositories.CategoriaRepository;
 
 public class CategoriaService {
 
+	private static final Logger log 
+		= Logger.getLogger(CategoriaService.class);
 	
 	private CategoriaRepository categoriaRepository;
 	
@@ -19,8 +23,11 @@ public class CategoriaService {
 
 
 	public List<Categoria> listar() throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+		
+		log.info(" Obtenido categorias desde el servicio");
+		
+		return this.categoriaRepository.listar();
+	
 	}
 	
 	

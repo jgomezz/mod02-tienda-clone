@@ -22,7 +22,7 @@ public class CategoriaListarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log 
-		= Logger.getLogger(CategoriaService.class);
+		= Logger.getLogger(CategoriaListarServlet.class);
 	
 	private CategoriaService categoriaService;
 
@@ -48,12 +48,17 @@ public class CategoriaListarServlet extends HttpServlet {
 		try {
 		
 			List<Categoria> categorias = this.categoriaService.listar();
+			
+			log.info("Categorias obtenidas --> " +  categorias);
+			
 
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		
 		}
+		
+		
 		
 		
 		
