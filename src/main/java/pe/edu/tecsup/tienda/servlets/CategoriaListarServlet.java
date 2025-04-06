@@ -5,28 +5,52 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import pe.edu.tecsup.tienda.entities.Categoria;
+import pe.edu.tecsup.tienda.services.CategoriaService;
+
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class CategoriaListarServlet
  */
 @WebServlet("/CategoriaListarServlet")
 public class CategoriaListarServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
+    
+	private CategoriaService categoriaService;
+
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CategoriaListarServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
+        this.categoriaService = new CategoriaService();
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		
+		try {
+		
+			List<Categoria> categorias = this.categoriaService.listar();
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		
+		}
+		
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
