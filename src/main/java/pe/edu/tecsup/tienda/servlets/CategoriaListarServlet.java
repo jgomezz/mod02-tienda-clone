@@ -11,6 +11,8 @@ import pe.edu.tecsup.tienda.services.CategoriaService;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class CategoriaListarServlet
  */
@@ -18,7 +20,10 @@ import java.util.List;
 public class CategoriaListarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-    
+
+	private static final Logger log 
+		= Logger.getLogger(CategoriaService.class);
+	
 	private CategoriaService categoriaService;
 
 	
@@ -38,6 +43,7 @@ public class CategoriaListarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+		log.info("Obteniendo las categorias de la tienda");
 		
 		try {
 		
