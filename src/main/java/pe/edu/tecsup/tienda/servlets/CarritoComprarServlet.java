@@ -1,6 +1,8 @@
 package pe.edu.tecsup.tienda.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -9,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import pe.edu.tecsup.tienda.entities.Producto;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
@@ -46,6 +49,34 @@ public class CarritoComprarServlet extends HttpServlet {
 			Producto producto = this.productoService.obtener(id);
 			
 			log.info("produco --> " + producto);
+			
+			
+			// Usando la session
+			
+			HttpSession session = request.getSession();
+			
+			// Busco mis pedidos
+			
+			List<Producto> misPedidos 
+				= (List<Producto>)session.getAttribute("mis_pedidos");
+			
+			if(misPedidos == null) {
+				// Estoy en mi primer pedido	
+				misPedidos = new ArrayList<Producto>();
+				misPedidos.add(producto);
+				
+			} else {
+				// Ya create el pedido
+				misPedidos.add(producto);
+			}
+			
+			session.setAttribute("mis_pedidos", misPedidos);
+			
+			request.getSession().setAttribute("success", "Producto añadido al carrito");
+			
+			response.sendRedirect(request.getContextPath() + "/CarritoListarServlet");
+			
+			
 			
 		} catch (Exception e) {
 			log.error(e, e);
