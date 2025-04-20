@@ -104,7 +104,7 @@ public class ProductoRepository {
 		
 		stmt.executeUpdate();
 		
-		stmt.close();
+		stmt.close(); 
 		con.close();
 		
 		log.info("success!");
