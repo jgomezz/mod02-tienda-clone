@@ -113,17 +113,16 @@ public class ProductoRegistrarServlet extends HttpServlet {
 				
 			}
 			
-			
-			
-			
-			
-			
-			
+		
 			
 			
 			log.info(producto);
 			
 			productoService.registrar(producto);
+			
+			
+			request.getSession().setAttribute("success", "Registro guardado satisfactoriamente");
+
 			
 			response.sendRedirect(request.getContextPath() + "/ProductoListarServlet");
 	        
