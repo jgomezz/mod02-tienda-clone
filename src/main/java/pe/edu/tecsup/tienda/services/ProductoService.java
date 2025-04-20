@@ -29,6 +29,15 @@ public class ProductoService {
 		return this.productoRepository.listar();
 	
 	}
+
+
+	public void registrar(Producto producto) throws Exception {
+		
+		log.info("call registrar(producto: " + producto + ")");
+		
+		productoRepository.registrar(producto);
+	}
+
 	
 	
 }
