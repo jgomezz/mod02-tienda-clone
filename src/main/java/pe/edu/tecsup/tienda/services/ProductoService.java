@@ -35,7 +35,7 @@ public class ProductoService {
 		
 		log.info("call registrar(producto: " + producto + ")");
 		
-		productoRepository.registrar(producto);
+		this.productoRepository.registrar(producto);
 	}
 
 
@@ -44,8 +44,17 @@ public class ProductoService {
 
 		log.info("call eliminar(id: " + id + ")");
 	
-		productoRepository.eliminar(id);
+		this.productoRepository.eliminar(id);
 	
+	}
+
+
+	public Producto obtener(int id) throws Exception {
+
+		log.info("call obtener(id: " + id + ")");
+		
+		return 	this.productoRepository.obtener(id);
+		
 	}
 
 	
