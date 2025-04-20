@@ -48,15 +48,20 @@ public class ProductoListarServlet extends HttpServlet {
 			
 			log.info("Productos obtenidos --> " +  productos);
 			
+			request.setAttribute("productos", productos);
+
+			request.getRequestDispatcher("/WEB-INF/jsp/producto/listar.jsp")
+				   .forward(request, response);
 
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			log.error(e, e);
+			
+			throw new ServletException(e.getMessage(), e);
 		
 		}
 		
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
