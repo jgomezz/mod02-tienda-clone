@@ -47,6 +47,8 @@ public class ProductoRegistrarServlet extends HttpServlet {
 			
 			List<Categoria> categorias = categoriaService.listar();
 			
+			log.info("categorias" + categorias);
+			
 			request.setAttribute("categorias", categorias);
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/producto/registrar.jsp")

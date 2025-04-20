@@ -29,22 +29,20 @@ public class CategoriaRepository {
 		String query = "SELECT * FROM categorias ORDER BY orden";
 		PreparedStatement stmt = con.prepareStatement(query);
 		ResultSet rs = stmt.executeQuery();
-		
-		List<Categoria> lista = new ArrayList<Categoria>();
-		
+				
 		while (rs.next()) {
 			Categoria categoria = new Categoria();
 			categoria.setId(rs.getInt("id"));
 			categoria.setNombre(rs.getString("nombre"));
 			categoria.setOrden(rs.getInt("orden"));
-			lista.add(categoria);
+			categorias.add(categoria);
 		}
 		
 		rs.close();
 		stmt.close();
 		con.close();
 		
-		log.info("lista: " + lista);
+		log.info("categorias: " + categorias);
 			
 		
 		return categorias;
