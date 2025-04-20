@@ -1,11 +1,15 @@
 package pe.edu.tecsup.tienda.repositories;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import pe.edu.tecsup.tienda.entities.Categoria;
+import pe.edu.tecsup.tienda.utils.ConexionBD;
 
 public class CategoriaRepository {
 
@@ -17,11 +21,30 @@ public class CategoriaRepository {
 		log.info("Obtenido las categorias desde el repositorio");
 	
 		List<Categoria> categorias = new ArrayList<>();
+	
+		// Establece la conexion a la base de datos
+		Connection con = ConexionBD.obtenerConexion();
+
+		// Realiza la consulta a la base de datos
+		String query = "SELECT * FROM categorias ORDER BY orden";
+		PreparedStatement stmt = con.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
 		
+		List<Categoria> lista = new ArrayList<Categoria>();
 		
-		categorias.add(new Categoria(1,"Procesadores",1));
-		categorias.add(new Categoria(2,"Memorias",2));
-		categorias.add(new Categoria(3,"Discos Duros",3));
+		while (rs.next()) {
+			Categoria categoria = new Categoria();
+			categoria.setId(rs.getInt("id"));
+			categoria.setNombre(rs.getString("nombre"));
+			categoria.setOrden(rs.getInt("orden"));
+			lista.add(categoria);
+		}
+		
+		rs.close();
+		stmt.close();
+		con.close();
+		
+		log.info("lista: " + lista);
 			
 		
 		return categorias;
