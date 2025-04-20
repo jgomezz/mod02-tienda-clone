@@ -15,7 +15,7 @@ import pe.edu.tecsup.tienda.entities.Producto;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
 /**
- * Servlet implementation class ProducyoListarServlet
+ * Servlet implementation class ProductoListarServlet
  */
 @WebServlet("/ProductoListarServlet")
 public class ProductoListarServlet extends HttpServlet {

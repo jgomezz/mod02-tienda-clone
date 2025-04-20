@@ -38,6 +38,15 @@ public class ProductoService {
 		productoRepository.registrar(producto);
 	}
 
+
+
+	public void eliminar(Integer id) throws Exception {
+
+		log.info("call eliminar(id: " + id + ")");
 	
+		productoRepository.eliminar(id);
+	
+	}
+
 	
 }
