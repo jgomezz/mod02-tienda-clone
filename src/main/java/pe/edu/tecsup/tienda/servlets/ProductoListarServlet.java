@@ -1,55 +1,52 @@
 package pe.edu.tecsup.tienda.servlets;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pe.edu.tecsup.tienda.entities.Categoria;
-import pe.edu.tecsup.tienda.services.CategoriaService;
-
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.log4j.Logger;
+import pe.edu.tecsup.tienda.entities.Producto;
+import pe.edu.tecsup.tienda.services.ProductoService;
 
 /**
- * Servlet implementation class CategoriaListarServlet
+ * Servlet implementation class ProducyoListarServlet
  */
-@WebServlet("/CategoriaListarServlet")
-public class CategoriaListarServlet extends HttpServlet {
-	
+@WebServlet("/ProductoListarServlet")
+public class ProductoListarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	private static final Logger log 
-		= Logger.getLogger(CategoriaListarServlet.class);
+	= Logger.getLogger(ProductoListarServlet.class);
 	
-	private CategoriaService categoriaService;
-
+	private ProductoService productoService;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoriaListarServlet() {
+    public ProductoListarServlet() {
         super();
-        
-        this.categoriaService = new CategoriaService();
-        
+	    this.productoService =  new ProductoService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		log.info("Obteniendo las categorias de la tienda");
+		
+		log.info("Obteniendo los productos de la tienda");
 		
 		try {
 		
-			List<Categoria> categorias = this.categoriaService.listar();
+			List<Producto> productos = this.productoService.listar();
 			
-			log.info("Categorias obtenidas --> " +  categorias);
+			log.info("Productos obtenidos --> " +  productos);
 			
 
 		} catch (Exception e) {
